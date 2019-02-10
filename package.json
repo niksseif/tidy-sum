@@ -16,6 +16,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+    "resolutions": {
+      "ajv": "6.8.1"
+    },
   "browserslist": [
     ">0.2%",
     "not dead",
