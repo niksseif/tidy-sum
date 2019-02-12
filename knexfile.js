@@ -3,12 +3,12 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/tidy-sum'
+    connection: 'postgres://localhost/tidysum'
   },
 
   test: {
     client: 'pg',
-    connection: 'postgres://localhost/tidy-sum_dv'
+    connection: 'postgres://localhost/tidysum_dv'
   },
 
   production: {
