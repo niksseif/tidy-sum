@@ -8,7 +8,9 @@
     },
     "dependencies": {
         "body-parser": "^1.18.3",
-        "express": "^4.16.4"
+        "express": "^4.16.4",
+        "knex": "^0.16.3",
+        "pg": "^7.8.0"
     },
     "devDependencies": {
         "concurrently": "^4.0.1"
