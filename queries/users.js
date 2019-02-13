@@ -18,6 +18,12 @@ getUserById =(id) => {
         .first()
 }
 
+//------GET USERS:id/income
+getUserIncomes = id => {
+    return knex('income')
+        .where('users_id', id)
+}
+
 //-----CREATE USERS
 createUser = (payload) =>{
     return knex('users')
@@ -34,4 +40,4 @@ deleteUser =(id) =>{
         return knex('users')
     })
 }
-module.exports={ getAllUsers,getUserById,createUser,deleteUser}
+module.exports = { getAllUsers, getUserById, createUser, deleteUser, getUserIncomes}
