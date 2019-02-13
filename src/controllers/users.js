@@ -9,7 +9,7 @@ getAllUsers = async (req, res, next) => {
             let promise = await model.getAllUsers()
             res.status(200).json(promise);
         } catch {
-            console.error('this error is from controller')
+            console.error('you have no permission')
         }
 
 }

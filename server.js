@@ -15,6 +15,9 @@ const port = process.env.PORT || 5000;
 
 //GETTING ALL INCOMES
 // http://localhost:5000/income
+
+//GETTING ALL EXPENSES
+// http://localhost:5000/expense
 //=================================================
 
 
@@ -26,13 +29,18 @@ app.use(cors())
 
 const userRoutes = require('./src/routes/users')
 const incomeRoute = require('./src/routes/income')
+const expenseRoute = require('./src/routes/expense')
+
 
 //user route
 app.use('/users',userRoutes)
 app.use('/users/income',userRoutes)
+
 //income route
 app.use('/income',incomeRoute)
 
+//expense route
+app.use('/expense', expenseRoute)
 
 app.all('*', (req, res, next) => res.sendStatus(404))
 
