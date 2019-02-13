@@ -8,6 +8,18 @@ const getUserAllIncome = async() => {
    incomes =  await incomeQuery.getAllIncomes()
    return incomes;  
 }
+//========== CREATE INCOME
+const createIncome = async (payload) => {
+    income = await incomeQuery.createIncome(payload)
+    return income.error ? { error: 'error creating income', status: 404 } : income
+}
 
 
-module.exports = { getUserAllIncome,getUserIncomes }
+//=========== DELETE INCOME 
+const deleteIncome = async (id) => {
+    income = await incomeQuery.deleteIncome(id)
+        (!income) ? { error: 'error deleting income', status: 404 } : income;
+}
+
+
+module.exports = { getUserIncomes, createIncome,deleteIncome }

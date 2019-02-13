@@ -22,6 +22,7 @@ getAllIncomes = () => {
             'income.label',
             'income.total'
         )
+        .orderBy('income.created_at', 'desc')
 }
 
 
@@ -41,7 +42,17 @@ return knex('income')
     .then(result =>{
         return knex('income')
         .join('users','users_id', '=', 'income.users_id')
+            .select(
+                'users.id',
+                'income.id',
+                'income.source',
+                'income.description',
+                'income.amount',
+                'income.label',
+                'income.total'
+            )
+            .orderBy('income.created_at', 'desc')
     })
 }
 
-module.exports = { getAllIncomes, getUserIncomes,createIncome, deleteIncome }
+module.exports = { getAllIncomes, createIncome, deleteIncome }

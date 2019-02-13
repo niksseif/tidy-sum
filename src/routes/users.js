@@ -3,9 +3,8 @@ const router = express.Router()
 const ctrl = require('../controllers/users')
 
 
-//========GET THE ROUTE FOR YSER LIST
-console.log('hitting routes in user')
-console.log(ctrl.getUserIncome,"<<<ctrl >>>>>")
+//========GET THE ROUTE FOR USER 
+
 router.get('/', ctrl.getAllUsers)
-router.get('/:userid', ctrl.getUserIncome)
+router.get('/:userid/income', ctrl.getUserIncome)
 module.exports = router

@@ -11,7 +11,7 @@ const port = process.env.PORT || 5000;
 // http://localhost:5000/users
 
 //GETTING THE INCOME OF SPECIFIC USER
-//http://localhost:5000/users/income/1
+//http://localhost:5000/users/user:id/income
 
 //GETTING ALL INCOMES
 // http://localhost:5000/income
@@ -34,13 +34,16 @@ const expenseRoute = require('./src/routes/expense')
 
 //user route
 app.use('/users',userRoutes)
-app.use('/users/income',userRoutes)
 
 //income route
 app.use('/income',incomeRoute)
 
 //expense route
 app.use('/expense', expenseRoute)
+
+
+
+
 
 app.all('*', (req, res, next) => res.sendStatus(404))
 

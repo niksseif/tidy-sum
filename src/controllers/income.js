@@ -12,6 +12,22 @@ getAllIncome = async (req, res, next) => {
         console.error('you have no permission')
     }
 }
+//------- ----- CREATE INCOME
+createIncome = payload =>{
+    return knex('income')
+    .insert(payload)
+    .returning('*')
+}
 
+//============  DELETE INCOME
+deleteIncome = async (req, res, next) => {
+    try {
+        let id = await req.params.id
+        let promise = await model.deleteIncome(id)
+        return !promise.result ? next(promise) : res.status(200).json(promise)
+    } catch {
+        throw error;
+    }
+}
 
-module.exports = { getAllIncome,getUserIncome }
+module.exports = { getAllIncome,createIncome,deleteIncome }
