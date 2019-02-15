@@ -67,6 +67,7 @@ class Login extends React.Component {
                                 placeholder="password"
                                 value={fields.password}
                                 onChange={this.handleChange}
+                                minlength="6"
                             />
                         </FormGroup>
                         <Button
