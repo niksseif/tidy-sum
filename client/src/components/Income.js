@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import IncomeModalEdit from "./IncomeModalEdit";
 import IncomeAdd from './IncomeAdd'
 import {List,Icon,Label,Segment,Modal,ListItem,Reveal} from "semantic-ui-react";
+import { Link } from 'react-router-dom';
 // import { connect } from'react-redux'
 // import { fetchUesrData } from '../actions'
 
@@ -73,7 +74,7 @@ class Income extends Component {
     }
     this.setState({ income: [...newIncome]})
  }
-    
+  
   render() {
     const { income, edit, user, total} = this.state;
     console.log(income,"<<<<INCOME FROM THE INCOME PAGE")
@@ -86,11 +87,13 @@ class Income extends Component {
             <Icon 
             name='add square' 
             onClick={()=>{ this.setState({ reveal:true})}}
-            />      
+            />   
+             
             <Icon 
             name='remove square'  
             onClick={()=>{ this.setState({ reveal: false})}}
             />
+        
              <div >
                 { (this.state.reveal) &&
                     <Reveal.Content visible>
