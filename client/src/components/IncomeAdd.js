@@ -51,8 +51,8 @@ class IncomeAdd extends Component {
             let result = this.state.incomesArr
             result.push(income)
             this.setState({ incomesArr: [...result]})
-            
         }
+        this.props.history.push('/')
     }
 
 

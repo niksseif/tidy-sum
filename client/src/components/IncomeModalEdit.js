@@ -26,7 +26,7 @@ class IncomeModal extends Component {
     // -----handling put request to the api
     //TODO: Add put request to the user income module
     async handleEdit (data)  {
-      console.log('hitting handleEdit')
+      // console.log('hitting handleEdit')
         let userId = data.income.users_id
         
         const res = await fetch(`http://localhost:5000/users/${userId}/income`, {
@@ -49,7 +49,7 @@ class IncomeModal extends Component {
  
   render() {
     const { edit, incomeLabel ,incomeSource , incomeDescription , incomeAmount} = this.state
-    console.log(this.props,"<<<<this props is coming from income edit")
+    // console.log(this.props,"<<<<this props is coming from income edit")
     return (
       <div style={{marginTop:'5vw', marginBottom:'5vw', marginLeft:'3vw',marginRight:'3vw'}}>
       <Form>
