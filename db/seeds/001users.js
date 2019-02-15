@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('users').insert([
-        {id:1, name: 'nik', email: 'nik@wonderland.com',hashed_password: '$2b$08$IfDQWzpC2Feke.tALtOElupO3NAIFI7OpJxFDxhmQkIuASTM.Mqyu'},
+        { name: 'nik', email: 'nik@wonderland.com',hashed_password: '$2b$08$IfDQWzpC2Feke.tALtOElupO3NAIFI7OpJxFDxhmQkIuASTM.Mqyu'},
       ]);
     });
 };

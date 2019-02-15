@@ -17,8 +17,9 @@ const createIncome = async (payload) => {
 
 //=========== DELETE INCOME 
 const deleteIncome = async (id) => {
+    console.log('helloo from model')
     income = await incomeQuery.deleteIncome(id)
-        (!income) ? { error: 'error deleting income', status: 404 } : income;
+       income.error ? { error: 'error deleting income', status: 404 } : income;
 }
 
 

@@ -7,4 +7,6 @@ const ctrl = require('../controllers/users')
 
 router.get('/', ctrl.getAllUsers)
 router.get('/:userid/income', ctrl.getUserIncome)
+router.put('/:userid/income', ctrl.updateUserIncome)
+
 module.exports = router

@@ -10,6 +10,6 @@ router.get('/', ctrl.getAllIncome);
 router.post('/', ctrl.createIncome)
 
 // ================= DELETE INCOME
-router.delete('/', ctrl.deleteIncome)
+router.delete('/:incomeid', ctrl.deleteIncome)
 
 module.exports = router

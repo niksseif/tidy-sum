@@ -23,6 +23,14 @@ getUserIncomes = id => {
     return knex('income')
         .where('users_id', id)
 }
+//-------- Update USER INCOME
+updateUserIncome = (id, payload) => {
+    console.log(id,"<<<<id from querries")
+    return knex('income')
+    .where('id', id)
+    .update(payload)
+    .returning('*')
+}
 
 //-----CREATE USERS
 createUser = (payload) =>{
@@ -40,4 +48,4 @@ deleteUser =(id) =>{
         return knex('users')
     })
 }
-module.exports = { getAllUsers, getUserById, createUser, deleteUser, getUserIncomes}
+module.exports = { getAllUsers, getUserById, createUser, deleteUser, getUserIncomes, updateUserIncome}

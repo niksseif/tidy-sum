@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('balance').insert([
-        {id: 1, users_id: '1',total:'0'},
+        {users_id: '1',total:'0'},
         
       ]);
     });
