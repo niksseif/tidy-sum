@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
 import userReducer from './userReducer';
+import incomeReducer from './incomeReducer';
 
 
 
 export default  combineReducers({
-    userData: userReducer,
+
+    usersData: userReducer,
+    userIncome: incomeReducer,
 })

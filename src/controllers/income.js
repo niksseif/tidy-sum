@@ -13,20 +13,26 @@ getAllIncome = async (req, res, next) => {
     }
 }
 //------- ----- CREATE INCOME
-createIncome = payload =>{
-    return knex('income')
-    .insert(payload)
-    .returning('*')
+createIncome = async (req, res, next) => {
+    try {
+        let payload = await req.body.income
+        let promise = await model.createIncome(payload)
+        // console.log(res,"<<<<res")
+        return res.status(200).json(promise)
+    } catch (error) {
+        console.error('error creating income', error)
+    }
 }
 
 //============  DELETE INCOME
 deleteIncome = async (req, res, next) => {
+    console.log(req.params.incomeid,"<<<req")
     try {
-        let id = await req.params.id
+        let id = await req.params.incomeid
         let promise = await model.deleteIncome(id)
-        return !promise.result ? next(promise) : res.status(200).json(promise)
-    } catch {
-        throw error;
+        return  res.status(200).json(promise)
+    } catch(error) {
+        console.error('error creating income', error)
     }
 }
 

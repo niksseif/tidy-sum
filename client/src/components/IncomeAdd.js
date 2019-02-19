@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Modal, Header, Icon, Button, Input, Form, TextArea } from "semantic-ui-react";
-
+import { connect } from 'react-redux'
+import { fetchUserData, fetchUserIncome,  handleAdd } from '../redux/actions'
+import { bindActionCreators } from "../../../../../../Library/Caches/typescript/3.3/node_modules/redux";
    
 //TODO: Add sweet alert to this response   
 //TODO: Add redux to this project
@@ -8,58 +10,35 @@ import { Modal, Header, Icon, Button, Input, Form, TextArea } from "semantic-ui-
 
 class IncomeAdd extends Component {
     state = {
-        incomesArr: this.props.incomesArr,
-        income: {
-            users_id:this.props.id,
-            source: this.props.source,
-            description: this.props.description,
-            amount: this.props.amount,
-            label: this.props.label,
-            total:this.props.total,
-        }
+        newIncome:{
+            users_id:this.props.usersId.id
+        },
+        // close:false,
     }
     //--------handling the form change for income
     handleChange = (e, { value }) => {
-    
         e.preventDefault();
         this.setState({
-            income: { ...this.state.income, [e.target.name]: e.target.value }
+            newIncome: { ...this.state.newIncome, [e.target.name]: e.target.value }
         })
 
     }
    
-//Add post request to the user income module
-     handleAdd = async (data) => {
-       const res =  await fetch(`http://localhost:5000/income`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
- 
-         return res 
-    }
 
     //------------handle submit
     handleSubmit = async (e) => {
         e.preventDefault();
-        let res= await this.handleAdd(this.state)
-        const {  income } = this.state
-        if (res){
-            let result = this.state.incomesArr
-            result.push(income)
-            this.setState({ incomesArr: [...result]})
-            
-        }
+      
+        let res = await this.props.handleAdd(this.state.newIncome)
     }
 
-
     render() {
+        const {income, usersData, usersId} = this.props
+     
         return (
             <div style={{ marginTop: '5vw', marginBottom: '5vw', marginLeft: '3vw', marginRight: '3vw' }}>
-                <Form onSubmit={(e) => { this.handleSubmit(e) }}>
+                
+                <Form onSubmit={ this.handleSubmit}>
                     <Form.Group>
                         <Form.Field control={Input} icon="dollar sign" placeholder='label'label='INCOME LABEL' onChange={this.handleChange} name='label' />
                         <Form.Field control={Input} placeholder='source' label='INCOME SOURCE' onChange={this.handleChange} name='source' />
@@ -77,13 +56,27 @@ class IncomeAdd extends Component {
 
 
                     <Modal.Actions>
-                        <Button type='submit' color="green" >
+                        <Button 
+                        type='submit' 
+                        color="green" 
+                        >
                             <Icon name="checkmark" /> Yes
           </Button>
                     </Modal.Actions>
                 </Form>
+                
             </div>
         );
     }
 }
-export default IncomeAdd;
+
+
+const mapStateToProps = state => ({
+    usersData: state.usersData,
+    newIncome: state.newIncome
+
+})
+
+export default connect(mapStateToProps, { handleAdd })(IncomeAdd)
+
+

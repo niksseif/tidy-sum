@@ -2,36 +2,33 @@ import React, { Component } from "react";
 import IncomeModalEdit from "./IncomeModalEdit";
 import IncomeAdd from './IncomeAdd'
 import {List,Icon,Label,Segment,Modal,ListItem,Reveal} from "semantic-ui-react";
-// import { connect } from'react-redux'
-// import { fetchUesrData } from '../actions'
-
+import { connect } from'react-redux'
+import { fetchUserData, fetchUserIncome, handleDeleteReq,handleAdd, getUser } from '../redux/actions'
+import { bindActionCreators } from 'redux'
 
 //TODO: 1.Display existing income
 //      2.Add to existing income
 //      3. Delete from existing Income
-class Income extends Component {
-  state = {
-    user: null,
-    income: null,
-    total: 0,
-    edit:false,
-    reveal:false,
-  };
-
-  async componentDidMount() {
-    try {
-     let users = await fetch(`http://localhost:5000/users`);
-      let result = await users.json();
-      let id = result[0].id;
-      let income = await fetch(`http://localhost:5000/users/${id}/income`);
-      let res = await income.json();
-      this.setState({ user: result, income: res });
-    } catch (error) {
-      throw error;
+class IncomePage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            edit:false,
+            reveal:false,
+        };
     }
+  async  componentDidMount () {
+      await this.props.fetchUserData();
+      
+      let id = this.props.usersData[0].id
+      await this.props.fetchUserIncome(id)
+  
+        //  await this.props.handleDeleteReq();
+  
   }
+  
 
-//Calculate the sum of the amount from each income
+// Calculate the sum of the amount from each income
   calcTotal = arr => {
     let res = arr.reduce((acc, item) => {
       let amount = item.amount;
@@ -40,43 +37,38 @@ class Income extends Component {
     }, 0); 
     return res;
   };
+
+
 //handle total change
   changeTotalState(calcTotal) {   
     this.setState({ total: this.state.total + calcTotal() });
   }
 
-  // handle delete request
-  handleDeleteReq = async (data) => {
-      let id = data.id
-      console.log('heloo hitting me')
-      const res = await fetch(`http://localhost:5000/income/${id}`, {
-          method: 'DELETE',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-      })
-     return res;
-     
-  }
   //handle delete after the response is ok than set the state to the new state
- handleDelete = (e,data) => {
+ handleDelete = async (e,data) => {
     e.preventDefault();
-    let newIncome;
-    let res =  this.handleDeleteReq(this.state.income[data.id])
-     
-    if(res) {
-       newIncome =  this.state.income.filter(item => {
-        let removedId  = this.state.income[data.id].id
-        return !(item.id === removedId)
-        
-        })
-    }
-    this.setState({ income: [...newIncome]})
+    console.log(data.id)
+   let userId = this.props.usersData[0].id
+    if(data){
+    let res = await this.props.handleDeleteReq(data.id,userId)
+    
+      }
+
+
+  
  }
+
+
+
     
   render() {
-    const { income, edit, user, total} = this.state;
-    console.log(income,"<<<<INCOME FROM THE INCOME PAGE")
+   const { edit} = this.state
+    let income = this.props.userIncome
+    let usersData = this.props.usersData
+    let usersId = this.props.usersData[0]
+    
+   
+    
     return (
       <Segment
         style={{ backgroundColor: "#DBE2DD", marginTop: "1vw", opacity: "0.9" }}
@@ -92,23 +84,25 @@ class Income extends Component {
             onClick={()=>{ this.setState({ reveal: false})}}
             />
              <div >
-                { (this.state.reveal) &&
+                { (this.state.reveal ) && (this.props.userIncome)&&
                     <Reveal.Content visible>
                         <IncomeAdd 
-                        id={user[0].id}
-                        incomesArr={income}
-                        total={total}
+                        income={income}
+                        usersData={usersData}
+                        usersId={usersId}
                                 />
                             </Reveal.Content>
-                     }
+                      }
                     </div>
             
         </ListItem>
-          {!income
+          {
+            !income
             ? "Loading ...."
-            : income.map((item, id) => {
-                return (
-                  <List.Item key={id}>
+            : income.map((item) => {
+               return (
+                 
+                  <List.Item key={item.id}>
                     <List.Icon
                       name="dollar sign"
                       size="large"
@@ -119,8 +113,8 @@ class Income extends Component {
                       <List.Description >
                         DESCRIPTION: {item.description}
                       </List.Description>
-                      <Label>
-                        <Label.Detail>LABEL: {item.label}</Label.Detail>
+                      <Label> 
+                         <Label.Detail>LABEL: {item.label}</Label.Detail>
                       </Label>
                       <Label>
                         <Label.Detail>AMOUNT: ${item.amount}</Label.Detail>
@@ -132,9 +126,9 @@ class Income extends Component {
                     onClick={() => { this.setState({ edit: true }) }}
                     />
                     }
-                    >
+                    > 
                       <IncomeModalEdit
-                      users_id = {user[0].id}
+                      // users_id = {user[0].id}
                       id={item.id}
                       edit = {edit}
                       incomeLabel={item.label}
@@ -147,7 +141,7 @@ class Income extends Component {
                    
                     </Modal>
                         <Icon 
-                        id={id}
+                        id={item.id}
                         name="delete"
                         onClick={this.handleDelete}
                         >
@@ -167,7 +161,7 @@ class Income extends Component {
               />
               <List.Content>
                 <List.Header >TOTAL INCOME</List.Header>
-                <List.Description>${this.calcTotal(income)}</List.Description>
+                { <List.Description>${this.calcTotal(income)}</List.Description> } 
               </List.Content>
             </List.Item>
           )}
@@ -176,5 +170,18 @@ class Income extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+    usersData: state.usersData,
+    userIncome:state.userIncome,
 
-export default Income;
+})
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     deleteIncome: bindActionCreators(handleDeleteReq, dispatch)
+//   }
+// }
+
+
+export default connect(mapStateToProps, { fetchUserData, fetchUserIncome,handleDeleteReq, handleAdd })(IncomePage)
+
+
