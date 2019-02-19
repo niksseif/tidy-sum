@@ -29,12 +29,33 @@ const getUserIncomes =  (id) => {
 //------ UPDATE USER INCOME
 
 const updateUserIncome = (id,payload) =>{
-    console.log(id,'hello from modal update user')
     income = usersQuery.updateUserIncome(id,payload);
-    console.log(income,"<<<income")
-    return income.then(result =>{
-        console.log(result,"<<<")
-        return result;
-    })
+    // return income.then(result =>{
+    //     return result;
+    // })
+    if(!income){
+        return { error: 'error creating income', status: 404 }
+    } else {
+        return income;
+    }
 }
-module.exports = { getAllUsers, getUserById, getUserIncomes, updateUserIncome }
+//========== CREATE INCOME
+const createUserIncome = async (payload) => {
+    income = await usersQuery.createUserIncome(payload)
+     if (income.error ){
+         return { error: 'error creating income', status: 404 }
+     }  else {
+            return income;
+     } 
+}
+//=========== DELETE INCOME 
+const deleteUserIncome = async (id) => {
+    income = await usersQuery.deleteUserIncome(id)
+   
+    if (income.error ){
+        return  { error: 'error deleting income', status: 404 } 
+    }else {
+             return income;
+        }
+}
+module.exports = { getAllUsers, getUserById, getUserIncomes, updateUserIncome, createUserIncome, deleteUserIncome}

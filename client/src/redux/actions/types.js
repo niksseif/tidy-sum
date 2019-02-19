@@ -1,3 +1,11 @@
-export const FETCH_USER_DATA = 'FETCH_USER_DATA';
+
+export const FETCH_USER_DATA_SUCCESS ='FETCH_USER_DATA_SUCCESS'
+export const FETCH_USER_DATA_FAILED = 'FETCH_USER_DATA_FAILED'
+export const  ADD_USER_DATA = 'ADD_USER_DATA'
 export const FETCH_USER_INFO = 'fetch_user_info';
-export const FETCH_USER_INCOME ='fetch_user_Income'
+export const FETCH_USER_INCOME ='fetch_user_Income';
+export const DELETE_USER_INCOME = 'DELETE_USER_INCOME';
+export const ADD_USER_INCOME = 'ADD_USER_INCOME';
+export const ADD_USER_INCOME_SUCCESS = 'ADD_USER_INCOME_SUCCESS';
+export const ADD_USER_INCOME_FAILED = 'ADD_USER_INCOME_FAILED'
+export const EDIT_USER_INCOME = 'EDIT_USER_INCOME';

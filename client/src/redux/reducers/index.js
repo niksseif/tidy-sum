@@ -8,5 +8,4 @@ export default  combineReducers({
 
     usersData: userReducer,
     userIncome: incomeReducer,
-    userId: userReducer,
 })

@@ -1,18 +1,22 @@
-import { FETCH_USER_DATA, FETCH_USER_INFO} from '../actions/types'
+import {  FETCH_USER_DATA_SUCCESS, FETCH_USER_DATA_FAILED, ADD_USER_DATA, } from '../actions/types'
 
-const defaultInitialStateUserReducer ={
-    usersData : null,
-}
+const defaultInitialStateUserReducer = []
+    
+
 
 const userReducer = (state = defaultInitialStateUserReducer, action) => {
     switch(action.type) {
-        case FETCH_USER_DATA:
-        return {...state, usersData : action.payload };
-        case FETCH_USER_INFO : 
-        return {...state, userId:{ id : action.payload}}
+        case ADD_USER_DATA:
+        return {...state, user: action.payload }
+        case FETCH_USER_DATA_SUCCESS:
+            return [...action.payload];
+        case FETCH_USER_DATA_FAILED:
+            return action.payload;
         default : 
-        return  state;
+            return  state;
     }
 };
 
 export default userReducer;
+
+

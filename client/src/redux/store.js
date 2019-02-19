@@ -1,8 +1,12 @@
-import { applyMiddleware, createStore, compose } from 'redux'
-import combineReducers from './reducers/index'
-// import logger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import incomeReducer from './reducers/incomeReducer'
+import logger from 'redux-logger'
+import userReducer from './reducers/userReducer';
 
-export default function setupStore(initialState) {
-    return createStore(combineReducers, initialState)
-}
+const rootReducer = combineReducers({
+    users: userReducer,
+    income: incomeReducer
+})
+
+export default () => createStore(rootReducer, applyMiddleware(logger, thunkMiddleware))

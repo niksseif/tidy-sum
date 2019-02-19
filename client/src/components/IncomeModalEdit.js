@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Modal, Header, Icon, Button, Input, Form, TextArea } from "semantic-ui-react";
+import {handleUpdate} from '../redux/actions'
 import Income from "./Income";
+import { connect } from 'react-redux'
 
 class IncomeModal extends Component {
     state = {
@@ -25,21 +27,13 @@ class IncomeModal extends Component {
 
     // -----handling put request to the api
     //TODO: Add put request to the user income module
-    async handleEdit (data)  {
-      // console.log('hitting handleEdit')
-        let userId = data.income.users_id
-        
-        const res = await fetch(`http://localhost:5000/users/${userId}/income`, {
-            method:'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify(data.income)
-        })
-        await res;
-        console.log(res,"<<<res")
-        res.status ? alert('done'): alert('service is not working')
+    handleEdit (data)  {
+      console.log(data,
+        'DATA>>>>>')
+       let  userId = this.props.usersData[0].id
+      let editedIncome= data.income 
+      this.props.handleUpdate(userId,editedIncome)
+       
     }
   handleSubmit = (e) => {
     console.log('hekki from handle sugmit')
@@ -81,4 +75,10 @@ class IncomeModal extends Component {
     );
   }
 }
-export default IncomeModal;
+const mapStateToProps = state => ({
+  usersData: state.usersData,
+  newIncome: state.newIncome
+
+})
+
+export default connect(mapStateToProps, { handleUpdate })(IncomeModal)
