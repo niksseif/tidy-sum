@@ -10,7 +10,7 @@ class Balance extends Component {
 
 
         return (
-            <div>Hello from BALANCE</div>
+            <div style={{ backgroundColor: "#DBE2DD", marginTop: "1vw", opacity: "0.9" }}>COMING SOON....</div>
         )
     }
 };

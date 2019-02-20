@@ -79,4 +79,57 @@ deleteUserIncome = id => {
                 .orderBy('income.created_at', 'desc')
         })
 }
-module.exports = { getAllUsers, getUserById, createUser, deleteUser, getUserIncomes, updateUserIncome, createUserIncome, deleteUser, deleteUserIncome}
+//------GET USERS:id/expense
+getUserExpense = id => {
+    return knex('expenses')
+        .where('users_id', id)
+}
+
+//========= CREATE EXPENSE 
+createUserExpense = payload => {
+    return knex('expenses')
+        .insert(payload)
+        .returning('*')
+}
+
+//-------- EDIT USER EXPENSE
+editUserExpense = (id, payload) => {
+    return knex('expenses')
+        .where('id', id)
+        .update(payload)
+        .returning('*')
+}
+//------- DELETE EXPENSE---
+deleteUserExpense = id => {
+    return knex('expenses')
+        .where('id', id)
+        .del()
+        .then(result => {
+            
+            return knex('expenses')
+                .join('users', 'users_id', '=', 'expenses.users_id')
+                .select(
+                    'users.id',
+                    'expenses.id',
+                    'expenses.description',
+                    'expenses.amount',
+                    'expenses.total'
+                )
+                .orderBy('expenses.created_at', 'desc')
+        })
+    }
+module.exports = { 
+    getAllUsers, 
+    getUserById,
+     createUser, 
+     deleteUser,
+      getUserIncomes, 
+      updateUserIncome, 
+      createUserIncome, 
+      deleteUser, 
+      deleteUserIncome, 
+      getUserExpense, 
+      createUserExpense, 
+      editUserExpense, 
+      deleteUserExpense
+    }

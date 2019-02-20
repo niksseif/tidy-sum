@@ -28,22 +28,19 @@ class IncomeModal extends Component {
     // -----handling put request to the api
     //TODO: Add put request to the user income module
     handleEdit (data)  {
-      console.log(data,
-        'DATA>>>>>')
-       let  userId = this.props.usersData[0].id
+      let  userId = this.props.usersData[0].id
       let editedIncome= data.income 
       this.props.handleUpdate(userId,editedIncome)
        
     }
   handleSubmit = (e) => {
-    console.log('hekki from handle sugmit')
     e.preventDefault();
     this.handleEdit(this.state)
   }
  
   render() {
-    const { edit, incomeLabel ,incomeSource , incomeDescription , incomeAmount} = this.state
-    // console.log(this.props,"<<<<this props is coming from income edit")
+    const {  incomeLabel ,incomeSource , incomeDescription , incomeAmount} = this.state
+    
     return (
       <div style={{marginTop:'5vw', marginBottom:'5vw', marginLeft:'3vw',marginRight:'3vw'}}>
       <Form>

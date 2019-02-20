@@ -41,7 +41,7 @@ render(){
             })
            }
         </div>
-        {/* TODO: create another header component  for income, expense and Balance  */}
+       
         
            <Header />
         </div>

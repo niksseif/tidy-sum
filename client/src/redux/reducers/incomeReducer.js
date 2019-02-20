@@ -15,8 +15,7 @@ const incomeReducer = (state = defaultInitialStateIncomeReducer, action) => {
             return [...action.payload]
 
         case EDIT_USER_INCOME:
-        console.log(state,"<<<state of reducer")
-        console.log(action.payload,"<<<<payload action")
+       
             return [...action.payload]
 
         default:
