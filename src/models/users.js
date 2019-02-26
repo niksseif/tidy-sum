@@ -58,4 +58,56 @@ const deleteUserIncome = async (id) => {
              return income;
         }
 }
-module.exports = { getAllUsers, getUserById, getUserIncomes, updateUserIncome, createUserIncome, deleteUserIncome}
+
+//----------GET USER Expense
+const getUserExpense = (id) => {
+    incomes = usersQuery.getUserExpense(id)
+    return incomes.then(result => {
+        console.log(result,"<<<result")
+        return result;
+    });
+}
+//==========CREATE EXPENSE
+const createUserExpense = async (payload) => {
+    expense = await usersQuery.createUserExpense(payload)
+  if(expense.error)
+    return  { error: 'error creating expense', status: 404 } 
+    else {
+        return expense;
+    }     
+}
+
+//------ EDIT USER EXPENSE
+
+const editUserExpense = (id, payload) => {
+    
+    expense = usersQuery.editUserExpense(id, payload);
+   
+    if (!expense) {
+        return { error: 'error creating income', status: 404 }
+    } else {
+        return expense;
+    }
+}
+//=========== DELETE EXPENSE 
+const deleteUserExpense = async (id) => {
+    expense= await usersQuery.deleteUserExpense(id)
+
+    if (expense.error) {
+        return { error: 'error deleting income', status: 404 }
+    } else {
+        return expense;
+    }
+}
+module.exports = { 
+    getAllUsers, 
+    getUserById, 
+    getUserIncomes, 
+    updateUserIncome, 
+    createUserIncome, 
+    deleteUserIncome, 
+    getUserExpense, 
+    createUserExpense, 
+    editUserExpense, 
+    deleteUserExpense
+}

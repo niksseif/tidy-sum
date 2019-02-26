@@ -23,8 +23,6 @@ class IncomePage extends Component {
       let id = this.props.usersData[0].id
       await this.props.fetchUserIncome(id)
   
-        //  await this.props.handleDeleteReq();
-  
   }
   
 
@@ -49,13 +47,10 @@ class IncomePage extends Component {
     e.preventDefault();
     console.log(data.id)
    let userId = this.props.usersData[0].id
+
     if(data){
-    let res = await this.props.handleDeleteReq(data.id,userId)
-    
-      }
-
-
-  
+      await this.props.handleDeleteReq(data.id,userId)
+    }
  }
 
 
@@ -90,8 +85,8 @@ class IncomePage extends Component {
                         income={income}
                         usersData={usersData}
                         usersId={usersId}
-                                />
-                            </Reveal.Content>
+                        />
+                    </Reveal.Content>
                       }
                     </div>
             
@@ -151,7 +146,7 @@ class IncomePage extends Component {
               })
             }
           {!income ? (
-            "LOADING...."
+            "Loading...."
           ) : (
             <List.Item>
               <List.Icon
@@ -175,11 +170,7 @@ const mapStateToProps = state => ({
     userIncome:state.userIncome,
 
 })
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     deleteIncome: bindActionCreators(handleDeleteReq, dispatch)
-//   }
-// }
+
 
 
 export default connect(mapStateToProps, { fetchUserData, fetchUserIncome,handleDeleteReq, handleAdd })(IncomePage)

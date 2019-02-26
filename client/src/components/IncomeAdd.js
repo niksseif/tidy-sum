@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Modal, Header, Icon, Button, Input, Form, TextArea } from "semantic-ui-react";
 import { connect } from 'react-redux'
 import { fetchUserData, fetchUserIncome,  handleAdd } from '../redux/actions'
-import { bindActionCreators } from "../../../../../../Library/Caches/typescript/3.3/node_modules/redux";
+// import { bindActionCreators } from "../../../../../../Library/Caches/typescript/3.3/node_modules/redux";
    
 //TODO: Add sweet alert to this response   
 //TODO: Add redux to this project
@@ -13,7 +13,7 @@ class IncomeAdd extends Component {
         newIncome:{
             users_id:this.props.usersId.id
         },
-        // close:false,
+      
     }
     //--------handling the form change for income
     handleChange = (e, { value }) => {
@@ -28,12 +28,11 @@ class IncomeAdd extends Component {
     //------------handle submit
     handleSubmit = async (e) => {
         e.preventDefault();
-      
-        let res = await this.props.handleAdd(this.state.newIncome)
+        await this.props.handleAdd(this.state.newIncome)
     }
 
     render() {
-        const {income, usersData, usersId} = this.props
+       
      
         return (
             <div style={{ marginTop: '5vw', marginBottom: '5vw', marginLeft: '3vw', marginRight: '3vw' }}>

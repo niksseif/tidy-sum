@@ -3,7 +3,7 @@ const model = require('../models/users')
 
 
 
-getAllUsers = async (req, res, next) => {
+getAllUsers = async (req, res) => {
     //TODO: ADD AUTH HERE 
         try {
             let promise = await model.getAllUsers()
@@ -14,7 +14,7 @@ getAllUsers = async (req, res, next) => {
 
 }
 //get user income 
-getUserIncome = async (req, res, next) => {
+getUserIncome = async (req, res) => {
     try {
         let payload = req.params
         
@@ -27,8 +27,8 @@ getUserIncome = async (req, res, next) => {
 }
 
 //update user income
-updateUserIncome = async (req,res,next) =>{
-    // try{
+updateUserIncome = async (req,res) =>{
+  
         let id = req.body.id
         let payload = req.body
         let promise = model.updateUserIncome(id,payload)
@@ -38,14 +38,12 @@ updateUserIncome = async (req,res,next) =>{
         promise.catch(error => {
             return error;
         })
-    // } 
-    // catch {
-    //      console.error('you have no permission')
-    // }
+    
 }
-//--------Add post to userIncome
+
+
 //------- ----- CREATE INCOME
-createUserIncome = async (req, res, next) => {
+createUserIncome = async (req, res) => {
     try {
        
         let payload = await req.body
@@ -57,7 +55,7 @@ createUserIncome = async (req, res, next) => {
     }
 }
 //============  DELETE INCOME
-deleteUserIncome = async (req, res, next) => {
+deleteUserIncome = async (req, res) => {
         
        
     try {
@@ -71,4 +69,59 @@ deleteUserIncome = async (req, res, next) => {
     }
 }
 
-module.exports = { getAllUsers, getUserIncome, updateUserIncome, createUserIncome, deleteUserIncome}
+//GET USER EXPENSE______
+
+getUserExpense = async (req, res) => {
+    try {
+        let payload = req.params
+
+        let promise = await model.getUserExpense(payload.userid)
+        // console.log(promise,"<<<promise")
+        res.status(200).json(promise)
+    } catch {
+        console.error('you have no permission')
+    }
+}
+///======================= CREATE EXPENSE
+
+createUserExpense = async (req, res) => {
+    try {
+        let payload = await req.body
+        let promise = await model.createUserExpense(payload)
+      
+        return  res.status(200).json(promise)
+    } catch (error) {
+        console.error('error creating expense')
+    }
+}
+
+//____________________EDIT USER EXPENSE
+editUserExpense = async (req, res) => {
+  
+    let id = req.body.id
+    let payload = req.body
+    let promise = model.editUserExpense(id, payload)
+ 
+    promise.then(result => {
+        res.status(201).json(result)
+    })
+    promise.catch(error => {
+        return error;
+    })
+  
+}
+//============  DELETE EXPENSE
+deleteUserExpense = async (req, res) => {
+
+
+    try {
+        let id = await req.params.expenseid
+
+        let promise = await model.deleteUserExpense(id)
+
+        return res.status(200).json(promise)
+    } catch (error) {
+        console.error('error creating income', error)
+    }
+}
+module.exports = { getAllUsers, getUserIncome, updateUserIncome, createUserIncome, deleteUserIncome, getUserExpense, createUserExpense, editUserExpense,deleteUserExpense}
