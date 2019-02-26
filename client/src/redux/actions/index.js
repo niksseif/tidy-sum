@@ -3,8 +3,9 @@ import { FETCH_USER_INCOME, FETCH_USER_DATA_SUCCESS, FETCH_USER_DATA_FAILED, DEL
 
 
 
-
+//ADD PROXY TO PACKAGE JSON
 const URL = 'http://localhost:5000'
+
     //http://localhost:5000/users/${id}/income
 
 //Add post request to the user income module
@@ -12,7 +13,7 @@ const URL = 'http://localhost:5000'
 
 export const fetchUserData = () => async (dispatch) => {
    try{ 
-       let res = await fetch(`${URL}/users`);
+       let res = await fetch(`/users`);
         let usersData = await res.json()
         dispatch({ 
             type: FETCH_USER_DATA_SUCCESS, 
@@ -29,7 +30,7 @@ export const fetchUserData = () => async (dispatch) => {
 
 export const fetchUserIncome  = (id) => async (dispatch) =>{
     try {
-        let res = await fetch(`${URL}/users/${id}/income`)
+        let res = await fetch(`/users/${id}/income`)
         let userIncome = await res.json();
 
         dispatch({ type: FETCH_USER_INCOME, payload: userIncome})
@@ -44,7 +45,7 @@ export const fetchUserIncome  = (id) => async (dispatch) =>{
 export const handleAdd =  (data) => async (dispatch) =>  {
 
     try {
-        const res = await fetch(`http://localhost:5000/users/${data.users_id}/income`, {
+        const res = await fetch(`/users/${data.users_id}/income`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -69,7 +70,7 @@ export const handleAdd =  (data) => async (dispatch) =>  {
 
 export const handleUpdate =  (id, data) => async dispatch =>{
    
-        let res = fetch(`http://localhost:5000/users/${id}/income`, {
+        let res = fetch(`/users/${id}/income`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -86,7 +87,7 @@ export const handleUpdate =  (id, data) => async dispatch =>{
 //______________DELETE USER INCOME
 export const handleDeleteReq = (id, userId) => async (dispatch) => {
 
-    fetch(`http://localhost:5000/users/${userId}/income/${id}`, {
+    fetch(`/users/${userId}/income/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -117,7 +118,7 @@ export const fetchUserExpense = (id) => async (dispatch) => {
 export const handleAddExpense = (data) => async (dispatch) => {
 
     try {
-        const res = await fetch(`http://localhost:5000/users/${data.users_id}/expense`, {
+        const res = await fetch(`/users/${data.users_id}/expense`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -138,9 +139,9 @@ export const handleAddExpense = (data) => async (dispatch) => {
     }
 }
 // _______EDIT USER EXPENSE______
-
+//http://localhost:5000
 export const editUserExpense = (id, data) => async dispatch => {
-    let res = fetch(`http://localhost:5000/users/${id}/expense`, {
+    let res = fetch(`/users/${id}/expense`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -159,7 +160,7 @@ export const editUserExpense = (id, data) => async dispatch => {
 //--------------------DELETE USER EXPENSE--------------
 export const deleteUserExpense = (id, userId) => async (dispatch) => {
 
-    fetch(`http://localhost:5000/users/${userId}/expense/${id}`, {
+    fetch(`/users/${userId}/expense/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
