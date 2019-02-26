@@ -19,7 +19,7 @@ class IncomePage extends Component {
     }
   async  componentDidMount () {
       await this.props.fetchUserData();
-      
+      console.log(this.props,"<<<<props")
       let id = this.props.usersData[0].id
       await this.props.fetchUserIncome(id)
   
