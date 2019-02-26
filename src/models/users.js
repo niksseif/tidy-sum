@@ -63,7 +63,6 @@ const deleteUserIncome = async (id) => {
 const getUserExpense = (id) => {
     incomes = usersQuery.getUserExpense(id)
     return incomes.then(result => {
-        console.log(result,"<<<result")
         return result;
     });
 }

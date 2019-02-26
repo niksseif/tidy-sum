@@ -12,7 +12,6 @@ const expenseReducer = (state = defaultInitialStateExpenseReducer, action) => {
             return [...state, ...action.payload]
             
         case EDIT_USER_EXPENSE:    
-        console.log(action.payload,"<<<<<payload")
             return [...state,...action.payload]
 
         case DELETE_USER_EXPENSE:

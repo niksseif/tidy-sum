@@ -25,7 +25,6 @@ getUserIncomes = id => {
 }
 //-------- Update USER INCOME
 updateUserIncome = (id, payload) => {
-    console.log(id,"<<<<id from querries")
     return knex('income')
     .where('id', id)
     .update(payload)
@@ -64,7 +63,6 @@ deleteUserIncome = id => {
         .where('id', id)
         .del()
         .then(result => {
-            console.log(result,"<<<<result from querry")
             return knex('income')
                 .join('users', 'users_id', '=', 'income.users_id')
                 .select(

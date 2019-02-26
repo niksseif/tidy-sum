@@ -76,7 +76,6 @@ getUserExpense = async (req, res) => {
         let payload = req.params
 
         let promise = await model.getUserExpense(payload.userid)
-        // console.log(promise,"<<<promise")
         res.status(200).json(promise)
     } catch {
         console.error('you have no permission')

@@ -45,7 +45,6 @@ class IncomePage extends Component {
   //handle delete after the response is ok than set the state to the new state
  handleDelete = async (e,data) => {
     e.preventDefault();
-    console.log(data.id)
    let userId = this.props.usersData[0].id
 
     if(data){

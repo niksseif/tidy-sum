@@ -18,7 +18,6 @@ export const fetchUserData = () => async (dispatch) => {
             type: FETCH_USER_DATA_SUCCESS, 
             payload: usersData
         });  
-        console.log(res,"<<<Res from user fetch")
    } catch (err) {
        dispatch({
            type: FETCH_USER_DATA_FAILED,
@@ -77,10 +76,8 @@ export const handleUpdate =  (id, data) => async dispatch =>{
             },
             body: JSON.stringify(data)
         }).then((data) => {
-            console.log(data, "DATA FROM API")
             data.json()
             .then(json => {
-                console.log(json,"<<<<<json object")
                 dispatch({ type: EDIT_USER_INCOME, payload: json })
             })
         })
@@ -96,7 +93,6 @@ export const handleDeleteReq = (id, userId) => async (dispatch) => {
         },
 
     }).then((data) => {
-        console.log(data, "<<< returned data from api")
         data.json().then(json => {
             dispatch({ type: DELETE_USER_INCOME, payload: json })
         })
@@ -144,8 +140,6 @@ export const handleAddExpense = (data) => async (dispatch) => {
 // _______EDIT USER EXPENSE______
 
 export const editUserExpense = (id, data) => async dispatch => {
-    console.log(data,"<<<<data")
-    console.log(id,"<<<id")
     let res = fetch(`http://localhost:5000/users/${id}/expense`, {
         method: 'PUT',
         headers: {
@@ -153,11 +147,9 @@ export const editUserExpense = (id, data) => async dispatch => {
         },
         body: JSON.stringify(data)
     }).then((data) => {
-        console.log(data, "DATA FROM API")
             data.json()
       
         .then(json => {
-                console.log(json, "<<<<<json object")
                 dispatch({ type: EDIT_USER_EXPENSE, payload: json })
             })
     })
@@ -174,7 +166,6 @@ export const deleteUserExpense = (id, userId) => async (dispatch) => {
         },
 
     }).then((data) => {
-        console.log(data, "<<< returned data from api")
         data.json().then(json => {
             dispatch({ type: DELETE_USER_EXPENSE, payload: json })
         })
