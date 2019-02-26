@@ -1,5 +1,5 @@
 {
-    "name": "example-create-react-app-express",
+    "name": "tidy-sum",
     "version": "1.0.0",
     "scripts": {
         "client": "cd client && yarn start",
@@ -11,6 +11,7 @@
         "cors": "^2.8.5",
         "express": "^4.16.4",
         "knex": "^0.16.3",
+        "morgan": "^1.9.1",
         "pg": "^7.8.0"
     },
     "devDependencies": {
