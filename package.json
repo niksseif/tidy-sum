@@ -4,9 +4,9 @@
     "scripts": {
         "client": "cd client && yarn start",
         "server": "nodemon server.js",
-        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
         "start": "node server.js",
-        "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
     },
     "dependencies": {
         "body-parser": "^1.18.3",
@@ -17,6 +17,6 @@
         "pg": "^7.8.0"
     },
     "devDependencies": {
-        "concurrently": "^4.0.1"
+        "concurrently": "^4.1.0"
     }
 }

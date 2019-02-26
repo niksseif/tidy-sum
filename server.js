@@ -46,7 +46,7 @@ app.use('/expense', expenseRoute);
 //   res.status(err.status).json(err);
 // });
 
-
+app.use(express.static(path.join(__dirname, 'client/build')));
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
@@ -56,4 +56,9 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
+// build mode
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/public/index.html'));
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
