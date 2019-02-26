@@ -21,12 +21,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "resolutions": {
     "ajv": "6.8.1"
   },
+  "proxy": "http://localhost:5000",
   "browserslist": [
     ">0.2%",
     "not dead",
