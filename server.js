@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
-const morgan = require('morgan');
+
 const cors = require('cors');
 
 const port = process.env.PORT || 5000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //= ===========================LOCAL HOST LINKS
 // GETTING ALL USERS
@@ -21,11 +23,6 @@ const port = process.env.PORT || 5000;
 // GETTING ALL EXPENSES
 // http://localhost:5000/expense
 //= ================================================
-
-
-if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(cors());
 
 
 const userRoutes = require('./src/routes/users');
@@ -43,9 +40,20 @@ app.use('/income', incomeRoute);
 app.use('/expense', expenseRoute);
 
 
-app.all('*', (req, res, next) => res.sendStatus(404));
+// app.all('*', (req, res, next) => res.sendStatus(404));
 
-app.use((err, req, res, next) => {
-  res.status(err.status).json(err);
-});
+// app.use((err, req, res, next) => {
+//   res.status(err.status).json(err);
+// });
+
+
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 app.listen(port, () => console.log(`Listening on port ${port}`));
