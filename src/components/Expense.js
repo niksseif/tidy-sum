@@ -51,7 +51,7 @@ class ExpensePage extends Component {
         }
     }
 
-
+    close = () => this.setState({ reveal: false })
 
 
     render() {
@@ -80,7 +80,7 @@ class ExpensePage extends Component {
                             {(this.state.reveal) && (expense) &&
                                 <Reveal.Content visible>
                                     <ExpenseAdd
-                                     
+                                        onClose={this.close}
                                         usersData={usersData}
                                         usersId={usersId}
                                     />
