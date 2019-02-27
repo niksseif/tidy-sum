@@ -28,8 +28,8 @@ class ExpenseAdd extends Component {
     //------------handle submit
     handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('about to hit the api')
         let res = await this.props.handleAddExpense(this.state.newExpense)
+        this.props.onClose()
     }
 
     render() {

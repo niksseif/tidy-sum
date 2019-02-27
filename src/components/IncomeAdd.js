@@ -24,11 +24,13 @@ class IncomeAdd extends Component {
 
     }
    
-
+  
     //------------handle submit
     handleSubmit = async (e) => {
         e.preventDefault();
         await this.props.handleAdd(this.state.newIncome)
+       
+        this.props.onClose()
     }
 
     render() {
@@ -72,8 +74,8 @@ class IncomeAdd extends Component {
 
 const mapStateToProps = state => ({
     usersData: state.usersData,
-    newIncome: state.newIncome
-
+    newIncome: state.newIncome,
+    
 })
 
 export default connect(mapStateToProps, { handleAdd })(IncomeAdd)
