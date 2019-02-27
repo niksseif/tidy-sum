@@ -153,7 +153,7 @@ class ExpensePage extends Component {
                                     verticalAlign="middle"
                                 />
                                 <List.Content>
-                                    <List.Header >TOTAL INCOME</List.Header>
+                                    <List.Header >TOTAL EXPENSE</List.Header>
                                     {<List.Description>${this.calcTotal(expense)}</List.Description>}
                                 </List.Content>
                             </List.Item>
