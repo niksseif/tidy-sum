@@ -18,6 +18,6 @@ React-semantic-ui
 npm - Dependency Management
 
 
-# Link 
+# Links 
 ##### Deployed version:https://tidy-sum.herokuapp.com
 ##### Link to back-end: https://github.com/niksseif/tidy-sum-backend
