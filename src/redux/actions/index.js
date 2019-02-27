@@ -2,7 +2,7 @@ import { ADD_USER_INCOME, ADD_USER_INCOME_FAILED, FETCH_USER_EXPENSE, ADD_USER_E
 import { FETCH_USER_INCOME, FETCH_USER_DATA_SUCCESS, FETCH_USER_DATA_FAILED, DELETE_USER_INCOME, EDIT_USER_INCOME } from './types';
 
 
-const URL = 'http://localhost:5000';
+const URL = 'https://tidy-sum-backend.herokuapp.com';
 // http://localhost:5000/users/${id}/income
 
 // Add post request to the user income module
@@ -10,7 +10,7 @@ const URL = 'http://localhost:5000';
 
 export const fetchUserData = () => async (dispatch) => {
   try {
-    const res = await fetch('/users');
+    const res = await fetch(`${URL}/users`);
     const usersData = await res.json();
     dispatch({
       type: FETCH_USER_DATA_SUCCESS,
@@ -27,7 +27,7 @@ export const fetchUserData = () => async (dispatch) => {
 
 export const fetchUserIncome = id => async (dispatch) => {
   try {
-    const res = await fetch(`/users/${id}/income`);
+    const res = await fetch(`${URL}/users/${id}/income`);
     const userIncome = await res.json();
 
     dispatch({ type: FETCH_USER_INCOME, payload: userIncome });
@@ -40,7 +40,7 @@ export const fetchUserIncome = id => async (dispatch) => {
 // ADD USER INCOME
 export const handleAdd = data => async (dispatch) => {
   try {
-    const res = await fetch(`/users/${data.users_id}/income`, {
+    const res = await fetch(`${URL}/users/${data.users_id}/income`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -64,7 +64,7 @@ export const handleAdd = data => async (dispatch) => {
 // _______UPDATE USER INCOME______
 
 export const handleUpdate = (id, data) => async (dispatch) => {
-  const res = fetch(`/users/${id}/income`, {
+  const res = fetch(`${URL}/users/${id}/income`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export const handleUpdate = (id, data) => async (dispatch) => {
 };
 // ______________DELETE USER INCOME
 export const handleDeleteReq = (id, userId) => async (dispatch) => {
-  fetch(`/users/${userId}/income/${id}`, {
+  fetch(`${URL}/users/${userId}/income/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ export const handleDeleteReq = (id, userId) => async (dispatch) => {
 // ------------------FETCH EXPENSE
 export const fetchUserExpense = id => async (dispatch) => {
   try {
-    const res = await fetch(`/users/${id}/expense`);
+    const res = await fetch(`${URL}/users/${id}/expense`);
     const userExpense = await res.json();
 
     dispatch({ type: FETCH_USER_EXPENSE, payload: userExpense });
@@ -108,7 +108,7 @@ export const fetchUserExpense = id => async (dispatch) => {
 
 export const handleAddExpense = data => async (dispatch) => {
   try {
-    const res = await fetch(`/users/${data.users_id}/expense`, {
+    const res = await fetch(`${URL}/users/${data.users_id}/expense`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -131,7 +131,7 @@ export const handleAddExpense = data => async (dispatch) => {
 // _______EDIT USER EXPENSE______
 
 export const editUserExpense = (id, data) => async (dispatch) => {
-  const res = fetch(`/users/${id}/expense`, {
+  const res = fetch(`${URL}/users/${id}/expense`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ export const editUserExpense = (id, data) => async (dispatch) => {
 
 // --------------------DELETE USER EXPENSE--------------
 export const deleteUserExpense = (id, userId) => async (dispatch) => {
-  fetch(`/users/${userId}/expense/${id}`, {
+  fetch(`${URL}/users/${userId}/expense/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

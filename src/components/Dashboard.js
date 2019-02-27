@@ -13,8 +13,9 @@ class Dashboard extends Component {
     async componentDidMount  () {
         //TODO:Need to fetch the user link  http://localhost:5000/users
         try {
-            let users = await fetch(`http://localhost:5000/users`)
+            let users = await fetch(`https://tidy-sum-backend.herokuapp.com/users`)
             let result = await users.json()
+            console.log(result,"<<<<")
             this.setState({ user: result })
             return result;
         } catch {
