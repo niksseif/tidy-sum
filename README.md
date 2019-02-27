@@ -6,16 +6,13 @@ These instructions will get you a copy of the project up and running on your loc
 # Prerequisites
 npm install react 
 # Installing
-git clone https://github.com/niksseif/tidy-sum
-cd into openidea 
-npm i 
-npm start
+git clone https://github.com/niksseif/tidy-sum <br>
+npm i <br>
+npm start <br>
 # Built with
-create-react-app
-
-React-semantic-ui 
-
-npm - Dependency Management
+create-react-app <br>
+React-semantic-ui <br>
+npm - Dependency Management <br>
 
 
 # Links 
