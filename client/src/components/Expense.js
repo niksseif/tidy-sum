@@ -43,7 +43,6 @@ class ExpensePage extends Component {
     //handle delete after the response is ok than set the state to the new state
     handleDelete = async (e, data) => {
         e.preventDefault();
-       
         let userId = this.props.usersData[0].id
         if (data) {
             let res = await this.props.deleteUserExpense(data.id, userId)
@@ -51,7 +50,7 @@ class ExpensePage extends Component {
         }
     }
 
-    close = () => this.setState({ reveal: false })
+
 
 
     render() {
@@ -80,7 +79,7 @@ class ExpensePage extends Component {
                             {(this.state.reveal) && (expense) &&
                                 <Reveal.Content visible>
                                     <ExpenseAdd
-                                        onClose={this.close}
+                                     
                                         usersData={usersData}
                                         usersId={usersId}
                                     />
@@ -153,7 +152,7 @@ class ExpensePage extends Component {
                                     verticalAlign="middle"
                                 />
                                 <List.Content>
-                                    <List.Header >TOTAL EXPENSE</List.Header>
+                                    <List.Header >TOTAL INCOME</List.Header>
                                     {<List.Description>${this.calcTotal(expense)}</List.Description>}
                                 </List.Content>
                             </List.Item>

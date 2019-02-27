@@ -5,7 +5,7 @@ import {List,Icon,Label,Segment,Modal,ListItem,Reveal} from "semantic-ui-react";
 import { connect } from'react-redux'
 import { fetchUserData, fetchUserIncome, handleDeleteReq,handleAdd, getUser } from '../redux/actions'
 import { bindActionCreators } from 'redux'
-import { Link } from 'react-router-dom'
+
 //TODO: 1.Display existing income
 //      2.Add to existing income
 //      3. Delete from existing Income
@@ -15,7 +15,6 @@ class IncomePage extends Component {
         this.state = {
             edit:false,
             reveal:false,
-            
         };
     }
   async  componentDidMount () {
@@ -46,7 +45,7 @@ class IncomePage extends Component {
   //handle delete after the response is ok than set the state to the new state
  handleDelete = async (e,data) => {
     e.preventDefault();
- 
+  
    let userId = this.props.usersData[0].id
 
     if(data){
@@ -54,14 +53,16 @@ class IncomePage extends Component {
     }
  }
 
-  close = () => this.setState({ reveal: false })
+
 
     
   render() {
-   const { edit, reveal,open } = this.state
+   const { edit} = this.state
     let income = this.props.userIncome
     let usersData = this.props.usersData
     let usersId = this.props.usersData[0]
+    
+   
     
     return (
       <Segment
@@ -72,28 +73,20 @@ class IncomePage extends Component {
             <Icon 
             name='add square' 
             onClick={()=>{ this.setState({ reveal:true})}}
-            />
-               
+            />      
             <Icon 
             name='remove square'  
             onClick={()=>{ this.setState({ reveal: false})}}
             />
              <div >
                 { (this.state.reveal ) && (this.props.userIncome)&&
-                   <Reveal.Content 
-                   visible
-                   onClose={this.close}
-                   >
-                      <IncomeAdd 
+                    <Reveal.Content visible>
+                        <IncomeAdd 
                         income={income}
                         usersData={usersData}
                         usersId={usersId}
-                        reveal={reveal}
-                        onClose={this.close}
-                      />
-              
+                        />
                     </Reveal.Content>
-             
                       }
                     </div>
             
@@ -175,7 +168,6 @@ class IncomePage extends Component {
 const mapStateToProps = state => ({
     usersData: state.usersData,
     userIncome:state.userIncome,
-    
 
 })
 
