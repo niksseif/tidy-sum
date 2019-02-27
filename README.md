@@ -6,7 +6,7 @@ These instructions will get you a copy of the project up and running on your loc
 # Prerequisites
 npm install react 
 # Installing
-git clone https://github.com/niksseif/OpenIdea 
+git clone https://github.com/niksseif/tidy-sum
 cd into openidea 
 npm i 
 npm start
