@@ -23,6 +23,7 @@
   "resolutions": {
     "ajv": "6.8.1"
   },
+  "proxy":"https://tidy-sum-backend.herokuapp.com",
   "browserslist": [
     ">0.2%",
     "not dead",
