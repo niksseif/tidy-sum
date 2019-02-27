@@ -10,7 +10,7 @@ const URL = 'https://tidy-sum-backend.herokuapp.com';
 
 export const fetchUserData = () => async (dispatch) => {
   try {
-    const res = await fetch(`${URL}/users`, { mode: 'no-cors' });
+    const res = await fetch(`${URL}/users`);
     const usersData = await res.json();
     dispatch({
       type: FETCH_USER_DATA_SUCCESS,
@@ -27,7 +27,7 @@ export const fetchUserData = () => async (dispatch) => {
 
 export const fetchUserIncome = id => async (dispatch) => {
   try {
-    const res = await fetch(`${URL}/users/${id}/income`, { mode: 'no-cors' });
+    const res = await fetch(`${URL}/users/${id}/income`);
     const userIncome = await res.json();
 
     dispatch({ type: FETCH_USER_INCOME, payload: userIncome });
@@ -42,7 +42,7 @@ export const handleAdd = data => async (dispatch) => {
   try {
     const res = await fetch(`${URL}/users/${data.users_id}/income`, {
       method: 'POST',
-      mode: 'no-cors',
+
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -67,7 +67,6 @@ export const handleAdd = data => async (dispatch) => {
 export const handleUpdate = (id, data) => async (dispatch) => {
   const res = fetch(`${URL}/users/${id}/income`, {
     method: 'PUT',
-    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -83,7 +82,6 @@ export const handleUpdate = (id, data) => async (dispatch) => {
 export const handleDeleteReq = (id, userId) => async (dispatch) => {
   fetch(`${URL}/users/${userId}/income/${id}`, {
     method: 'DELETE',
-    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -113,7 +111,6 @@ export const handleAddExpense = data => async (dispatch) => {
   try {
     const res = await fetch(`${URL}/users/${data.users_id}/expense`, {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -137,7 +134,6 @@ export const handleAddExpense = data => async (dispatch) => {
 export const editUserExpense = (id, data) => async (dispatch) => {
   const res = fetch(`${URL}/users/${id}/expense`, {
     method: 'PUT',
-    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -155,7 +151,6 @@ export const editUserExpense = (id, data) => async (dispatch) => {
 export const deleteUserExpense = (id, userId) => async (dispatch) => {
   fetch(`${URL}/users/${userId}/expense/${id}`, {
     method: 'DELETE',
-    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
