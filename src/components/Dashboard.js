@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import { Image } from 'semantic-ui-react'
 import Header from './Header'
 
-
+const URL ="https://tidy-sum-backend.herokuapp.com"
 class Dashboard extends Component {
     state = {
         loading:true,
@@ -13,9 +13,8 @@ class Dashboard extends Component {
     async componentDidMount  () {
         //TODO:Need to fetch the user link  http://localhost:5000/users
         try {
-            let users = await fetch(`/users`)
+            let users = await fetch(`${URL}/users`)
             let result = await users.json()
-            console.log(result,"<<<<")
             this.setState({ user: result })
             return result;
         } catch {
