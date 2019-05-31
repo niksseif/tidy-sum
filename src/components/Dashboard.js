@@ -45,7 +45,7 @@ class Dashboard extends Component {
                       fontWeight: "bold"
                     }}
                   >
-                    Hello {currentUser.name}
+                    Hello {`${currentUser.name.toUpperCase()}`}
                   </nav>
                 );
               })}

@@ -53,7 +53,7 @@ class IncomePage extends Component {
     this.setState({ total: this.state.total + calcTotal() });
   }
 
-  //handle delete after the response is ok than set the state to the new state
+  //handle Income delete after the response is ok than set the state to the new state
   handleDelete = async (e, data) => {
     e.preventDefault();
 
@@ -138,7 +138,6 @@ class IncomePage extends Component {
                       }
                     >
                       <IncomeModalEdit
-                        // users_id = {user[0].id}
                         id={item.id}
                         edit={edit}
                         incomeLabel={item.label}
