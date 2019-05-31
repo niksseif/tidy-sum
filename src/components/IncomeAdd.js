@@ -33,7 +33,6 @@ class IncomeAdd extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     await this.props.handleAdd(this.state.newIncome);
-
     this.props.onClose();
   };
 

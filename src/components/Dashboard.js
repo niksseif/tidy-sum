@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Image } from 'semantic-ui-react'
-import Header from "./Header";
+import Header from "./Header.jsx";
 
 const URL = "https://tidy-sum-backend.herokuapp.com";
 class Dashboard extends Component {
