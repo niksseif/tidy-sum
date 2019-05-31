@@ -2,8 +2,8 @@ import {
   FETCH_USER_EXPENSE,
   ADD_USER_EXPENSE,
   EDIT_USER_EXPENSE,
-  DELETE_USER_EXPENSE
-} from "../actions/types";
+  DELETE_USER_EXPENSE,
+} from '../actions/types';
 
 const defaultInitialStateExpenseReducer = [];
 

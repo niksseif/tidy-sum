@@ -2,8 +2,8 @@ import {
   FETCH_USER_INCOME,
   DELETE_USER_INCOME,
   ADD_USER_INCOME,
-  EDIT_USER_INCOME
-} from "../actions/types";
+  EDIT_USER_INCOME,
+} from '../actions/types';
 
 const defaultInitialStateIncomeReducer = [];
 

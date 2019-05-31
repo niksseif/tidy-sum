@@ -1,8 +1,8 @@
 import {
   FETCH_USER_DATA_SUCCESS,
   FETCH_USER_DATA_FAILED,
-  ADD_USER_DATA
-} from "../actions/types";
+  ADD_USER_DATA,
+} from '../actions/types';
 
 const defaultInitialStateUserReducer = [];
 
