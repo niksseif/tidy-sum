@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Image, Segment } from "semantic-ui-react";
+import React from "react";
 
 const Balance = () => (
   <div style={{ backgroundColor: "#DBE2DD", marginTop: "1vw", opacity: "0.9" }}>
