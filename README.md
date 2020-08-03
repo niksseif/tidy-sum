@@ -18,3 +18,7 @@ npm - Dependency Management <br>
 # Links 
 ##### Deployed version:https://tidy-sum.herokuapp.com
 ##### Link to back-end: https://github.com/niksseif/tidy-sum-backend
+
+
+
+<img src="https://media.giphy.com/media/TJycKkDmaYqJd9bKjZ/giphy.gif"></img>
